@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="boton_verdadero">True</string>
+    <string name="boton_falso">False</string>
+    <string name="verdadero">Verdadero</string>
+    <string name="falso">Falso</string>
+
+    <string name="Preguntas1">La caja negra de un avión es negraF</string>
+    <string name="Preguntas2">La Ciudad del Vaticano es un paísV</string>
+    <string name="Preguntas3">El monte Fuji es la montaña más alta de JapónV</string>
+    <string name="Preguntas4">Google inicialmente se llamaba BackRubV</string>
+    <string name="Preguntas5">Los tomates son frutasV</string>
+    <string name="Preguntas6">El cráneo es el hueso más fuerte del cuerpo humanoF</string>
+    <string name="Preguntas7">Puedes estornudar mientras duermesF</string>
+</resources>
