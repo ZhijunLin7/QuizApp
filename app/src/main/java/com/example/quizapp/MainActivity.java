@@ -38,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null) {
+            boolean [] contestado = savedInstanceState.getBooleanArray("contestado");
+            for (int i = 0; i < preguntas.length; i++) {
+                preguntas[i].setContestado(contestado[i]);
+            }
+
+            num_preguntas= savedInstanceState.getInt("num_preguntas");
+        }
+
+
+
+
         //Poner la primera palabra
         text_pregunta =(TextView) findViewById(R.id.pregunta);
         actualizar_pregunta();
@@ -48,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         boton_falso=(Button) findViewById(R.id.Boton_falso);
         boton_siguiente=(ImageButton) findViewById(R.id.siguiente);
         boton_anterior=(ImageButton) findViewById(R.id.anterior);
+
 
         boton_verdadero.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,18 +103,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void actualizar_pregunta(){
+        boton_verdadero=(Button) findViewById(R.id.boton_verdadero);
+        boton_falso=(Button) findViewById(R.id.Boton_falso);
 
         int pregunta=preguntas[num_preguntas].getId_texto();
         text_pregunta.setText(pregunta);
 
-        if (preguntas[num_preguntas].isContestado()==false){
-            Toast.makeText(this,"test",Toast.LENGTH_SHORT).show();
-            boton_verdadero.setEnabled(true);
-            boton_falso.setEnabled(true);
-        }
-        else{
+        if (preguntas[num_preguntas].isContestado()==true){
             boton_verdadero.setEnabled(false);
             boton_falso.setEnabled(false);
+        }
+        else{
+            boton_verdadero.setEnabled(true);
+            boton_falso.setEnabled(true);
         }
     }
 
@@ -122,6 +136,17 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, mensaje_retorno, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        boolean [] contestado = new boolean[preguntas.length];
+        for (int i = 0; i < preguntas.length; i++) {
+            contestado[i]=preguntas[i].isContestado();
+        }
+        savedInstanceState.putBooleanArray("contestado",contestado);
+        savedInstanceState.putInt("num_preguntas",num_preguntas);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
 }
